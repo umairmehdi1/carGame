@@ -1,0 +1,90 @@
+<html>
+    <head>
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+            }
+            .hide{
+                display: none;
+            }
+            .car{
+                height: 50px;
+                width: 70px;
+                background: red;
+                margin-left: 50px;
+                margin-top: 70px;
+            }
+        
+        
+        </style>
+    </head>
+    <body>
+        <div class="carGame">
+            <div class="score"></div>
+            <div class="startScreen">
+                <p>
+                    Press here to start <br>
+                    Arrow Keys to move <br>
+                    If you hit other car you will lose
+                </p>
+
+            </div>
+            <div class="gameArea hide"></div>
+        </div>
+
+        <script>
+            const score = document.querySelector('.carGame');
+            const startScreen = document.querySelector('.startScreen');
+            const gameArea = document.querySelector('.gameArea');
+
+            startScreen.addEventListener('click', start);
+            let player = {}
+
+
+
+            let Keys = {
+                ArrowUp: false, ArrowDown: false, ArrowLeft: false, ArrowRight: false 
+            }
+
+            console.log(gameArea);
+
+            document.addEventListener('keydown', keyDown);
+            document.addEventListener('keyup', keyUp);
+
+            function keyDown(e){
+                e.preventDefault();
+                Keys[e.key] = true;
+                
+                console.log(Keys);
+
+            }
+            function keyUp(e){
+                e.preventDefault();
+                Keys[e.key] = false;
+                
+
+            }
+                function gamePlay(){
+                    console.log("Hello i am clicked :) ");
+                    if(player.start){
+                    window.requestAnimationFrame(gamePlay);
+                }}
+
+                function start(){
+                    gameArea.classList.remove('hide');
+                    startScreen.classList.add('hide');
+                    player.start = true;
+                    window.requestAnimationFrame(gamePlay);
+
+                    let car = document.createElement('div');
+                    car.setAttribute('class','car');
+                    gameArea.appendChild(car);
+
+
+                }
+        </script>
+
+
+    </body>
+</html>
